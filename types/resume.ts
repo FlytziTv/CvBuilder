@@ -1,5 +1,3 @@
-// types/resume.ts
-
 export interface ContactInfo {
   fullName: string;
   email: string;
