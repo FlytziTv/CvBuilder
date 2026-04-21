@@ -1,5 +1,7 @@
+import { Skill } from "@/types/resume";
+
 interface Category {
-  value: string;
+  value: Skill["category"]; // ← 'technique' | 'outil' | 'soft'
   label: string;
   color: string;
 }
@@ -21,8 +23,8 @@ export const CATEGORIES: Category[] = [
     color: "bg-green-50 text-green-700 border-green-200",
   },
   {
-    value: "langue",
-    label: "Langue",
+    value: "language",
+    label: "Langage",
     color: "bg-orange-50 text-orange-700 border-orange-200",
   },
 ];

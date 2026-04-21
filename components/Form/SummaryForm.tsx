@@ -1,11 +1,13 @@
 "use client";
 
+import { useFormContext } from "react-hook-form";
 import { AlignLeft } from "lucide-react";
-import { useState } from "react";
+import { ResumeData } from "@/types/resume";
 import { FormSection } from "../ui/FormSection";
 
 export function SummaryFormSection() {
-  const [value, setValue] = useState("");
+  const { register, watch } = useFormContext<ResumeData>();
+  const value = watch("summary") ?? "";
 
   return (
     <FormSection title="Accroche" icon={AlignLeft} defaultOpen={false}>
@@ -19,12 +21,11 @@ export function SummaryFormSection() {
         <textarea
           rows={4}
           maxLength={400}
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          placeholder="Développeur fullstack avec 5 ans d'expérience en React et Node.js, spécialisé dans les architectures cloud-native..."
+          placeholder="Développeur fullstack avec 5 ans d'expérience..."
           className="input resize-none"
+          {...register("summary")}
         />
-        <p className="text-xs text-description-slate-400">
+        <p className="text-xs text-slate-400">
           2 à 3 phrases max. Mettez en avant votre valeur ajoutée et vos
           spécialités.
         </p>

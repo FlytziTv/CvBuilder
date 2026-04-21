@@ -1,6 +1,6 @@
 "use client";
 
-import { useForm, FormProvider } from "react-hook-form";
+import { useForm, FormProvider, useWatch } from "react-hook-form";
 import { useResumeStore } from "@/lib/store";
 import { ResumeData, defaultResumeData } from "@/types/resume";
 import { useEffect } from "react";
@@ -22,13 +22,11 @@ export default function Sidebar() {
     mode: "onChange",
   });
 
-  // Synchronise formulaire → store en temps réel
+  const watchedValues = useWatch({ control: methods.control });
+
   useEffect(() => {
-    const subscription = methods.watch((values) => {
-      setData(values as ResumeData);
-    });
-    return () => subscription.unsubscribe();
-  }, [methods, setData]);
+    setData(watchedValues as ResumeData);
+  }, [watchedValues, setData]);
 
   return (
     <aside className="w-110 h-screen sticky top-0 shrink-0 overflow-y-auto bg-background p-4 border-r border-gray-200">

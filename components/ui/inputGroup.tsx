@@ -1,26 +1,28 @@
+import React from "react";
+
 export function InputGroup({
   label,
-  value,
   type = "text",
   placeholder,
   cols,
+  ...rest
 }: {
   label: string;
-  value?: string;
   type?: string;
   placeholder?: string;
   cols?: boolean;
-}) {
+} & React.ComponentPropsWithoutRef<"input">) {
   return (
     <div className={`flex flex-col gap-1 w-full ${cols ? "col-span-2" : ""}`}>
-      <label className="label" htmlFor={value}>
+      <label className="label" htmlFor={rest.name}>
         {label}
       </label>
       <input
         type={type}
         className="input"
-        id={value}
+        id={rest.name}
         placeholder={placeholder}
+        {...rest}
       />
     </div>
   );
@@ -28,26 +30,26 @@ export function InputGroup({
 
 export function TextareaGroup({
   label,
-  value,
   placeholder,
-  cols,
+  fullWidth = false,
+  ...rest
 }: {
   label: string;
-  value?: string;
-  type?: string;
   placeholder?: string;
-  cols?: boolean;
-}) {
+  fullWidth?: boolean;
+} & React.ComponentPropsWithoutRef<"textarea">) {
   return (
-    <div className={`flex flex-col gap-1 w-full ${cols ? "col-span-2" : ""}`}>
-      <label className="label" htmlFor={value}>
+    <div
+      className={`flex flex-col gap-1 w-full ${fullWidth ? "col-span-2" : ""}`}
+    >
+      <label className="label" htmlFor={rest.name}>
         {label}
       </label>
       <textarea
         rows={4}
-        value={value}
         placeholder={placeholder}
         className="input resize-none"
+        {...rest}
       />
     </div>
   );

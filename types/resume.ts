@@ -40,7 +40,7 @@ export interface Project {
 export interface Skill {
   id: string;
   name: string;
-  category: "technique" | "outil" | "soft";
+  category: "technique" | "outil" | "soft" | "language";
 }
 
 export interface Language {
