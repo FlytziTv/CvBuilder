@@ -28,6 +28,15 @@ export default function Sidebar() {
     setData(watchedValues as ResumeData);
   }, [watchedValues, setData]);
 
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const customEvent = e as CustomEvent<ResumeData>;
+      methods.reset(customEvent.detail);
+    };
+    window.addEventListener("cv:import", handler);
+    return () => window.removeEventListener("cv:import", handler);
+  }, [methods]);
+
   return (
     <aside className="w-110 h-screen sticky top-0 shrink-0 overflow-y-auto bg-background p-4 border-r border-gray-200">
       <FormProvider {...methods}>

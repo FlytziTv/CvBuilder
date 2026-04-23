@@ -19,6 +19,7 @@ export function ATSPage() {
 
   return (
     <div
+      id="resume-preview"
       style={{
         fontFamily: "Arial, Helvetica, sans-serif",
         fontSize: "11pt",

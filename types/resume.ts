@@ -1,5 +1,6 @@
 export interface ContactInfo {
   fullName: string;
+  title: string;
   email: string;
   phone: string;
   location: string;
@@ -71,6 +72,7 @@ export interface ResumeData {
 export const defaultResumeData: ResumeData = {
   contact: {
     fullName: "",
+    title: "",
     email: "",
     phone: "",
     location: "",

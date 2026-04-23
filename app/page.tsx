@@ -1,12 +1,22 @@
+"use client";
+import { useResumeStore } from "@/lib/store";
 import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/sidebar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cvTemplates } from "@/data/cvTemplate";
 
 export default function Home() {
+  const { setVariant } = useResumeStore();
+
   return (
     <div className="flex flex-col h-screen overflow-hidden">
-      <Tabs defaultValue={cvTemplates[0].name} className="flex flex-col h-full">
+      <Tabs
+        defaultValue={cvTemplates[0].name}
+        className="flex flex-col h-full"
+        onValueChange={(value) =>
+          setVariant(value as "Design" | "ATS-Optimise")
+        }
+      >
         <Header>
           <TabsList>
             {cvTemplates.map((template) => {
@@ -31,7 +41,9 @@ export default function Home() {
 
               return (
                 <TabsContent key={template.name} value={template.name}>
-                  <ContentComponent />
+                  <div id="resume-preview">
+                    <ContentComponent />
+                  </div>
                 </TabsContent>
               );
             })}
